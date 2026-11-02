@@ -3,6 +3,7 @@
 -- You can modify some parts on this script ONLY IF YOU KNOW WHAT YOU ARE DOING.
 -- This script is connected to the leaderstats script that I also made.
 -- I recommend you to change the "leaderstats" and the "money" part if you already made your own leaderstats script.
+-- Made by vc_specs
 
 local canGiveMoney = true
 local part = script.Parent
