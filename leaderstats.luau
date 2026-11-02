@@ -1,5 +1,6 @@
 -- If you dont have a leaderstats script yet, use this script.
 -- This script is important if you are making simulators, RNGs, etc. which needs a leaderstats for shops and others.
+-- Made by vc_specs
 
 local player = game:GetService("Players")
 
