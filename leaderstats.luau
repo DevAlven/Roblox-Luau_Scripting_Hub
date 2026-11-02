@@ -1,5 +1,6 @@
 -- If you dont have a leaderstats script yet, use this script.
 -- This script is important if you are making simulators, RNGs, etc. which needs a leaderstats for shops and others.
+-- I recommend you to change the "money.Value = 0" based on what starting value you want for new players.
 -- Made by vc_specs
 
 local player = game:GetService("Players")
