@@ -6,3 +6,4 @@ Join my discord for suggestions and changes you want to tell me which may help i
 ENJOY!!!
 
 Discord:
+https://discord.gg/rjMk7HAUV
