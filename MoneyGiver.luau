@@ -2,6 +2,7 @@
 -- Insert a script to your part/block in workspace then paste this code.
 -- You can modify some parts on this script ONLY IF YOU KNOW WHAT YOU ARE DOING.
 -- I recommend you to change the "leaderstats" and the "money" part if you already made your own leaderstats script.
+
 local canGiveMoney = true
 local part = script.Parent
 part.Touched:Connect(function(hit)
