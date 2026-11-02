@@ -1,3 +1,6 @@
+-- If you dont have a leaderstats script yet, use this script.
+-- This script is important if you are making simulators, RNGs, etc. which needs a leaderstats for shops and others.
+
 local player = game:GetService("Players")
 
 game.Players.PlayerAdded:Connect(function(player)
