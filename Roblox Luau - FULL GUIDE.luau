@@ -1,6 +1,7 @@
 -- WELCOME!!!
 --  this is the full guide of how to script roblox luau.
 -- all code in this is used for coding in roblox.
+-- made by vc_specs
 
 -- VARIABLES
 Variables store information. In Luau, always use the local keyword to 
