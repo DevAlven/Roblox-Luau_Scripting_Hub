@@ -3,16 +3,16 @@
 -- If you dont have a leaderstats script yet, use this script.
 -- This script is important if you are making simulators, RNGs, etc. which needs a leaderstats for shops and others.
 -- I recommend you to change the "money.Value = 0" based on what starting value you want for new players.
--- Made by vc_specs
+-- Made by vc_specs (Fixed Version)
 
-local datastore = game:GetService("DataStoreService")
+local DataStoreService = game:GetService("DataStoreService")
 local playerdatastore = DataStoreService:GetDataStore("PlayerLeaderstats_DataV1")
-local player = game:GetService("Players")
+local Players = game:GetService("Players") 
 
-game.Players.PlayerAdded:Connect(function(player)
+Players.PlayerAdded:Connect(function(player)
     local leaderstats = Instance.new("Folder")
     leaderstats.Name = "leaderstats"
-    leaderstats.Parent = Player
+    leaderstats.Parent = Players
 
     local money = Instance.new("IntValue")
     money.Name = "Money"
@@ -20,48 +20,48 @@ game.Players.PlayerAdded:Connect(function(player)
     money.Value = 0
 
     local playerkey = "Player_" .. player.UserId
-        local success, savedData = pcall(function()
-                return playerdatastore:GetAsync("playerkey")
-            end)
+    local success, savedData = pcall(function()
+        return playerdatastore:GetAsync(playerkey) 
+    end)
 
     if success then
-		if savedData and savedData.money then
-			money.Value = savedData.money
-		end
-	else
-		warn("Failed to load data for " .. player.Name)
-	end
+        if savedData and savedData.money then
+            money.Value = savedData.money
+        end
+    else
+        warn("Failed to load data for " .. player.Name)
+    end
 end)
 
 -- function to save data when player leaves
-local function saveData(player)
-	local leaderstats = player:FindFirstChild("leaderstats")
-	if not leaderstats then return end
+local function saveData(Players)
+    local leaderstats = player:FindFirstChild("leaderstats")
+    if not leaderstats then return end
 
-	local money = leaderstats:FindFirstChild("Money")
-	if not money then return end
+    local money = leaderstats:FindFirstChild("Money")
+    if not money then return end
 
-	local playerkey = "Player_" .. player.UserId
-	local dataToSave = {
-		money = money.Value
-	}
+    local playerkey = "Player_" .. Players.UserId 
+    local dataToSave = {
+        money = money.Value
+    }
 
-	local success, err = pcall(function()
-		playerdatastore:SetAsync(playerkey, dataToSave)
-	end)
+    local success, err = pcall(function()
+        playerdatastore:SetAsync(playerkey, dataToSave)
+    end)
 
-	if not success then
-		warn("Failed to save data for " .. player.Name .. ": " tostring(err))
-	end
+    if not success then
+        warn("Failed to save data for " .. player.Name .. ": " .. tostring(err)) 
+    end
 end
 
 Players.PlayerRemoving:Connect(saveData)
 
 -- handle server shutdown safety
 game:BindToClose(function()
-	for _, player in ipairs(Players:GetPlayers()) do
-		task.spawn(function()
-			saveData(player)
-		end)
-	end
+    for _, player in ipairs(Players:GetPlayers()) do
+        task.spawn(function()
+            saveData(player)
+        end)
+    end
 end)
