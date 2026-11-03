@@ -22,7 +22,7 @@ part.Touched:Connect(function(hit)
           if money then
             money.Value = money.Value + 10
           
-            if canGiveMoney = true then
+            if canGiveMoney == true then
               canGiveMoney = false
               task.wait(2)
               canGiveMoney = true
