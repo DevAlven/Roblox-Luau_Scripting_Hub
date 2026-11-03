@@ -1,8 +1,25 @@
 -- useless script tbh
--- this script rejoins you to the same exact server
+-- rejoins to exact same server
 -- made by vc_specs
 
-local teleport = game:GetService("TeleportService")
-local player = game:GetService("Players").LocalPlayer
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-teleport:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+local placeId = game.PlaceId
+local jobId = game.JobId
+
+if jobId == "" then
+    warn("Cannot rejoin: JobId is empty (likely running in Roblox Studio).")
+    return
+end
+
+local success, result = pcall(function()
+    TeleportService:TeleportToPlaceInstance(placeId, jobId, LocalPlayer)
+end)
+
+if not success then
+    warn("Rejoin failed:", result)
+    -- Fallback: Teleport to any available server in the place
+    TeleportService:Teleport(placeId, LocalPlayer)
+end
