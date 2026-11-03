@@ -3,7 +3,7 @@
 -- If you dont have a leaderstats script yet, use this script.
 -- This script is important if you are making simulators, RNGs, etc. which needs a leaderstats for shops and others.
 -- I recommend you to change the "money.Value = 0" based on what starting value you want for new players.
--- Made by vc_specs (Fixed Version)
+-- Made by vc_specs (Fixed Version v2)
 
 local DataStoreService = game:GetService("DataStoreService")
 local playerdatastore = DataStoreService:GetDataStore("PlayerLeaderstats_DataV1")
@@ -12,7 +12,7 @@ local Players = game:GetService("Players")
 Players.PlayerAdded:Connect(function(player)
     local leaderstats = Instance.new("Folder")
     leaderstats.Name = "leaderstats"
-    leaderstats.Parent = Players
+    leaderstats.Parent = player 
 
     local money = Instance.new("IntValue")
     money.Name = "Money"
@@ -34,14 +34,14 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 -- function to save data when player leaves
-local function saveData(Players)
+local function saveData(player) 
     local leaderstats = player:FindFirstChild("leaderstats")
     if not leaderstats then return end
 
     local money = leaderstats:FindFirstChild("Money")
     if not money then return end
 
-    local playerkey = "Player_" .. Players.UserId 
+    local playerkey = "Player_" .. player.UserId 
     local dataToSave = {
         money = money.Value
     }
